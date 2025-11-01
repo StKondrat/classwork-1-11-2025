@@ -35,7 +35,7 @@ int main()
   int ** mtx = nullptr;
   try
   {
-    mtx == create(5, 5);
+    mtx = create(5, 5);
   }
   catch(const std::exception & e)
   {
@@ -43,5 +43,7 @@ int main()
 
     return 1;
   }
+  std::cout << "created\n";
+  
   destroy (mtx, 5);
 }
