@@ -1,2 +1,46 @@
+#include <iostream>
+#include <cstddef>
+
+void destroy(int ** mtx, size_t created)
+{
+  for (size_t i = 0; i < created; i++)
+  {
+    delete[] mtx[i];
+  }
+  delete[] mtx;
+}
+
+int ** create(size_t rows, size_t cols)
+{
+  int ** mtx = new int * [rows];
+  size_t created = 0;
+
+  try
+  {
+    for (; created < rows; ++created)
+    {
+      mtx[created] = new int[cols];
+    }
+  }
+  catch(const std::bad_alloc & e)
+  {
+    destroy(mtx, created);
+    throw;
+  }
+  return mtx;
+}
+
 int main()
-{}
+{
+  int ** mtx = nullptr;
+  try
+  {
+    mtx == create(5, 5);
+  }
+  catch(const std::exception & e)
+  {
+    std::cerr << e.what() << '\n';
+
+    return 1;
+  }
+}
