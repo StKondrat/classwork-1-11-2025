@@ -43,4 +43,5 @@ int main()
 
     return 1;
   }
+  destroy (mtx, 5);
 }
